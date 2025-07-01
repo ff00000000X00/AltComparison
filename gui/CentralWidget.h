@@ -5,7 +5,7 @@
 
 class QComboBox;
 class QTreeView;
-class CollapsibleGroupModel;
+class TreeModel;
 class ComparedBranchesData;
 
 class CentralWidget : public QWidget {
@@ -23,7 +23,7 @@ private:
     QComboBox *m_leftCombo = nullptr;
     QComboBox *m_rightCombo = nullptr;
     QTreeView *m_dataTree = nullptr;
-    CollapsibleGroupModel *m_treeModel = nullptr;
+    TreeModel *m_treeModel = nullptr;
 
 };
 

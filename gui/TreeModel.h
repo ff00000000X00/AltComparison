@@ -1,10 +1,8 @@
 #pragma once
 
 #include <QAbstractItemModel>
-#include <QMap>
 #include <QVector>
 #include <QString>
-#include <QSet>
 
 
 struct ComparedBranchesData;
@@ -15,15 +13,10 @@ struct Node {
     int parentIndex = -1;
 };
 
-struct Group {
-    QString groupName;
-    QVector<QVector<QString>> rows; // QVector<QString> - cols, size = 3
-};
-
-class CollapsibleGroupModel : public QAbstractItemModel {
+class TreeModel : public QAbstractItemModel {
     Q_OBJECT
 public:
-    CollapsibleGroupModel(QObject* parent = nullptr);
+    TreeModel(QObject* parent = nullptr);
 
     int rowCount(const QModelIndex&) const override;
     int columnCount(const QModelIndex&) const override;

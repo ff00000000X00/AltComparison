@@ -6,7 +6,7 @@
 #include <QHeaderView>
 
 #include "CentralWidget.h"
-#include "CollapsibleTableModel.h"
+#include "TreeModel.h"
 
 
 
@@ -15,7 +15,7 @@ CentralWidget::CentralWidget(QWidget *parent)
     , m_leftCombo(new QComboBox(this))
     , m_rightCombo(new QComboBox(this))
     , m_dataTree (new QTreeView(this))
-    , m_treeModel(new CollapsibleGroupModel(this))
+    , m_treeModel(new TreeModel(this))
     {
     
     m_dataTree->setRootIsDecorated(true);

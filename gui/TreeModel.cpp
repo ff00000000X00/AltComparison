@@ -1,12 +1,14 @@
 
-#include "CollapsibleTableModel.h"
+#include <QSet>
+
+#include "TreeModel.h"
 #include "../structs/comparedBranches.h"
 
-CollapsibleGroupModel::CollapsibleGroupModel(QObject* parent)
+TreeModel::TreeModel(QObject* parent)
     : QAbstractItemModel(parent) {
     }
 
-int CollapsibleGroupModel::rowCount(const QModelIndex& parent) const {
+int TreeModel::rowCount(const QModelIndex& parent) const {
     int parentId = parent.isValid() ? static_cast<int>(parent.internalId()) : 0;
 
     int count = 0;
@@ -17,11 +19,11 @@ int CollapsibleGroupModel::rowCount(const QModelIndex& parent) const {
     return count;
 }
 
-int CollapsibleGroupModel::columnCount(const QModelIndex&) const {
+int TreeModel::columnCount(const QModelIndex&) const {
     return 4;
 }
 
-QVariant CollapsibleGroupModel::data(const QModelIndex& index, int role) const {
+QVariant TreeModel::data(const QModelIndex& index, int role) const {
     if (!index.isValid() || role != Qt::DisplayRole)
         return {};
 
@@ -36,7 +38,7 @@ QVariant CollapsibleGroupModel::data(const QModelIndex& index, int role) const {
     return {};
 }
 
-QModelIndex CollapsibleGroupModel::index (int row, int column, const QModelIndex &parent) const{
+QModelIndex TreeModel::index (int row, int column, const QModelIndex &parent) const{
 
     if (!hasIndex(row, column, parent))
         return {};
@@ -52,7 +54,7 @@ QModelIndex CollapsibleGroupModel::index (int row, int column, const QModelIndex
     }
     return {};
 }
-QModelIndex CollapsibleGroupModel::parent(const QModelIndex &child) const{
+QModelIndex TreeModel::parent(const QModelIndex &child) const{
 
     if (!child.isValid())
     return {};
@@ -71,7 +73,7 @@ QModelIndex CollapsibleGroupModel::parent(const QModelIndex &child) const{
     return createIndex(parentId - (grandParentId + 1), 0, quintptr(parentId));
 }
 
-QVariant CollapsibleGroupModel::headerData(int section, Qt::Orientation orientation, int role) const {
+QVariant TreeModel::headerData(int section, Qt::Orientation orientation, int role) const {
     if (role != Qt::DisplayRole)
         return {};
 
@@ -86,7 +88,7 @@ QVariant CollapsibleGroupModel::headerData(int section, Qt::Orientation orientat
     return {};
 }
 
-void CollapsibleGroupModel::setDataModel(const ComparedBranchesData& data) {
+void TreeModel::setDataModel(const ComparedBranchesData& data) {
 
     beginResetModel();
     m_nodes.clear();

@@ -7,8 +7,8 @@
 
 #include <optional>
 
-#include "../include/libAltBranches.h"
-#include "../structs/comparedBranches.h"
+#include "libAltBranches.h"
+#include "comparedBranches.h"
 
 
 
