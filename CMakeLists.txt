@@ -21,6 +21,8 @@ add_executable(ALBCT
     gui/CentralWidget.cpp
     gui/TreeModel.h
     gui/TreeModel.cpp
+    jsonWriter.h
+    jsonWriter.cpp
 )
 
 target_link_libraries(ALBCT PUBLIC Qt5::Widgets)

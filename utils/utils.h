@@ -11,9 +11,6 @@
 #include "comparedBranches.h"
 
 
-
-
-
 namespace utils {
 
 const QVector<QString> errList = {"Failed to retrieve data", "Retrieved data is empty!", "Cant pars JSON data"};
@@ -57,7 +54,7 @@ enum Errors {
         return branchNames;
     }
 
-    ComparedBranchesData compareBranches(const QString branch1, const QString branch2){
+    QPair<ComparedBranchesData,QJsonObject> compareBranches(const QString branch1, const QString branch2){
         const char *ret = compare_branches(branch1.toUtf8(), branch2.toUtf8());
         if(!ret){
             qWarning()<<errList[Errors::DATA_RETRIVE_ERROR] << "\n";
@@ -96,6 +93,6 @@ enum Errors {
 
         ComparedBranchesData cbd{getBranchData("only_in_first"), getBranchData("only_in_second"), getBranchData("newer_in_first")};
 
-        return cbd;
+        return {cbd,jsObj};
     }
 }

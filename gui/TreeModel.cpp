@@ -117,7 +117,7 @@ void TreeModel::setDataModel(const ComparedBranchesData& data) {
                 i < newerFirst.size() ? newerFirst[i] : ""
             };
 
-            m_nodes.append({2, m_nodes.size(), row, archIndex}); // level = 2, parent = archIndex
+            m_nodes.append({2, m_nodes.size(), row, archIndex});
         }
     }
 

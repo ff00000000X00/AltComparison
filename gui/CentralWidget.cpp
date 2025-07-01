@@ -20,7 +20,8 @@ CentralWidget::CentralWidget(QWidget *parent)
     
     m_dataTree->setRootIsDecorated(true);
     m_dataTree->setItemsExpandable(true);
-    auto button = new QPushButton("compare", this); 
+    auto compareButton = new QPushButton("compare", this); 
+    auto saveButton = new QPushButton("save", this);
     m_dataTree->setModel(m_treeModel);
 
     m_dataTree->header()->resizeSection(1, 100);
@@ -32,21 +33,30 @@ CentralWidget::CentralWidget(QWidget *parent)
 
     QHBoxLayout *comboLayout = new QHBoxLayout;
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    QHBoxLayout *saveButtonLayot = new QHBoxLayout;
     mainLayout->setContentsMargins(0, 0, 0, 0);
     mainLayout->setSpacing(20);
     mainLayout->addLayout(comboLayout);
     mainLayout->addWidget(m_dataTree);
+    mainLayout->addLayout(saveButtonLayot);
 
     comboLayout->addWidget(m_leftCombo);
-    comboLayout->addWidget(button);
+    comboLayout->addWidget(compareButton);
     comboLayout->addWidget(m_rightCombo);
 
-    connect(button, &QPushButton::clicked, this, [this]() {
+    saveButtonLayot->addStretch(1);
+    saveButtonLayot->addWidget(saveButton);
+
+
+    connect(compareButton, &QPushButton::clicked, this, [this]() {
         emit compareClicked();
+    });
+
+    connect(saveButton, &QPushButton::clicked, this, [this]() {
+        emit saveClicked();
     });
 }
 CentralWidget::~CentralWidget() {
-    
 }
 
 void CentralWidget::onComparedDataLoaded(const ComparedBranchesData& modelData){

@@ -16,6 +16,7 @@ public:
     QPair<QString, QString> getBranchNames();
   signals:
     void compareClicked();
+    void saveClicked();
 public slots:
     void onComparedDataLoaded(const ComparedBranchesData& modelData);
     void onComboboxDataLoaded(const QStringList &leftData, const QStringList &rightData);
